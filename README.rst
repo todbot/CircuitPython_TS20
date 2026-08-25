@@ -22,7 +22,9 @@ Introduction
     :target: https://github.com/astral-sh/ruff
     :alt: Code Style: Ruff
 
-Driver for TouchSemi TS20 I2C capacitive touch chip
+CircuitPython Driver for the AD Semiconductor / TouchSemi TS20,
+a 20-channel capacitive touch sensor with automatic sensitivity
+calibration, controlled over I2C.
 
 
 Dependencies
