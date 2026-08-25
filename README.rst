@@ -38,35 +38,6 @@ This is easily achieved by downloading
 or individual libraries can be installed using
 `circup <https://github.com/adafruit/circup>`_.
 
-Installing from PyPI
-=====================
-.. note:: This library is not available on PyPI yet. Install documentation is included
-   as a standard element. Stay tuned for PyPI availability!
-
-.. todo:: Remove the above note if PyPI version is/will be available at time of release.
-
-On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from
-PyPI <https://pypi.org/project/circuitpython-ts20/>`_.
-To install for current user:
-
-.. code-block:: shell
-
-    pip3 install circuitpython-ts20
-
-To install system-wide (this may be required in some cases):
-
-.. code-block:: shell
-
-    sudo pip3 install circuitpython-ts20
-
-To install in a virtual environment in your current project:
-
-.. code-block:: shell
-
-    mkdir project-name && cd project-name
-    python3 -m venv .venv
-    source .env/bin/activate
-    pip3 install circuitpython-ts20
 
 Installing to a Connected CircuitPython Device with Circup
 ==========================================================
@@ -91,11 +62,69 @@ Or the following command to update an existing version:
 
     circup update
 
+Installing from PyPI
+=====================
+.. note:: This library is not available on PyPI yet. Install documentation is included
+   as a standard element. Stay tuned for PyPI availability!
+
+On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from
+PyPI <https://pypi.org/project/circuitpython-ts20/>`_.
+To install for current user:
+
+.. code-block:: shell
+
+    pip3 install circuitpython-ts20
+
+To install system-wide (this may be required in some cases):
+
+.. code-block:: shell
+
+    sudo pip3 install circuitpython-ts20
+
+To install in a virtual environment in your current project:
+
+.. code-block:: shell
+
+    mkdir project-name && cd project-name
+    python3 -m venv .venv
+    source .env/bin/activate
+    pip3 install circuitpython-ts20
+
+
 Usage Example
 =============
 
-.. todo:: Add a quick, simple example. It and other examples should live in the
-examples folder and be included in docs/examples.rst.
+Print out which of the 20 touch pads are being touched:
+
+.. code-block:: python
+
+    import time
+    import board
+    import ts20
+
+    i2c = board.I2C()  # uses board.SCL and board.SDA
+
+    # sensitivity is 0 (most sensitive) to 15 (least sensitive)
+    touch = ts20.TS20(i2c, sensitivity=5)
+
+    while True:
+        for pad, is_touched in enumerate(touch.touched_pads):
+            if is_touched:
+                print("pad", pad, "touched!")
+        time.sleep(0.25)
+
+Pads are numbered 0-19 (the datasheet calls them channels CS1-CS20).
+Sensitivity is really a touch threshold, so a lower number means the pad
+triggers more easily.  It can be changed at any time, for every pad at
+once or for a single pad:
+
+.. code-block:: python
+
+    touch.sensitivity = 3       # every pad
+    touch[0].sensitivity = 10   # just pad 0, less sensitive
+    print(touch.sensitivity)    # list of all 20 settings
+
+See the ``examples`` folder for complete examples.
 
 Documentation
 =============

@@ -35,7 +35,7 @@ Implementation Notes
 
 * AD Semiconductor / TouchSemi TS20 20-channel capacitive touch sensor
 
-.. todo:: Add a link to the breakout board product page.
+* For an example board, see https://github.com/todbot/TS20_Test_Board/
 
 **Software and Dependencies:**
 
