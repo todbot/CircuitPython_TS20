@@ -38,6 +38,15 @@ This is easily achieved by downloading
 or individual libraries can be installed using
 `circup <https://github.com/adafruit/circup>`_.
 
+Hardware
+========
+
+This library is for the
+AD Semiconductor / TouchSemi TS20 20-channel capacitive touch sensor
+
+* For an example board, see https://github.com/todbot/TS20_Test_Board/
+
+
 
 Installing to a Connected CircuitPython Device with Circup
 ==========================================================
